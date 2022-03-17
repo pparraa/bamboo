@@ -1,0 +1,30 @@
+<!-- rename to spring-config.xml for the Spring parset to automatically pick this up  -->
+
+<!-- BUT, getting error on load into Bamboo:
+  2017-08-08 11:21:31,715 INFO [QuickReload - Plugin Installer] [DefaultOsgiApplicationContextCreator] Discovered configurations {osgibundle:/META-INF/spring/*.xml} in bundle [Upload and scan with Veracode (Veracode.UploadScan)]
+2017-08-08 11:21:31,732 ERROR [ThreadPoolAsyncTaskExecutor::Thread 13] [OsgiPlugin] Unable to start the plugin container for plugin 'Veracode.UploadScan'
+org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Unable to locate Spring NamespaceHandler for XML schema namespace [http://www.atlassian.com/schema/atlassian-scanner/2]
+Offending resource: URL [bundle://115.0:0/META-INF/spring/spring-config.xml]
+
+	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:70)
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:85)
+	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:80)
+  
+  
+  Might be related to this (Bamboo not fully upgraded yet??)
+  
+  https://community.atlassian.com/t5/Answers-Developer-Questions/Bamboo-plugin-version-2-spring-scanner-and-remote-agents/qaq-p/495415
+  
+-->
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:atlassian-scanner="http://www.atlassian.com/schema/atlassian-scanner/2"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.atlassian.com/schema/atlassian-scanner/2
+        http://www.atlassian.com/schema/atlassian-scanner/2/atlassian-scanner.xsd">
+    <atlassian-scanner:scan-indexes/>
+</beans>

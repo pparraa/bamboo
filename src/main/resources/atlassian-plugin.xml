@@ -1,0 +1,26 @@
+<atlassian-plugin key="Veracode.UploadScan" name="${project.name}" plugins-version="2">
+
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+    </plugin-info>
+
+    <!-- internationalize the plugin -->
+    <resource type="i18n" name="com.veracode.bamboo.uploadscan" location="english"/>
+
+    <!-- defines the task -->
+    <taskType name="Veracode Upload and Scan" class="com.veracode.bamboo.uploadscan.VeracodeTask" key="task.veracode.uploadScan">
+      <description>Upload and Scan with Veracode</description>
+      <category name="test"/>
+      <!-- <resource type="download" name="icon" location="images/veracode-logo.png"/> -->
+      <configuration class="com.veracode.bamboo.uploadscan.VeracodeTaskConfigurator"/>
+      <resource type="freemarker" name="edit" location="editVeracodeTask.ftl"/>
+      <!--  deprecated  <resource type="freemarker" name="view" location="viewExampleTask.ftl"/>  -->
+    </taskType>
+    
+	 
+    <!-- <component-import key="i18nResolver" interface="com.atlassian.sal.api.message.I18nResolver"/>  -->
+    
+    
+</atlassian-plugin>
